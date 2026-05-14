@@ -1,0 +1,16 @@
+# Caddy auto-HTTPS for Saathi.
+# Put this at /etc/caddy/Caddyfile on the Lightsail box.
+# Replace saathi.example.in with your real subdomain before first run.
+
+saathi.example.in {
+    encode gzip
+    reverse_proxy 127.0.0.1:8000 {
+        header_up Host {host}
+        header_up X-Forwarded-For {remote_host}
+        header_up X-Forwarded-Proto {scheme}
+    }
+    log {
+        output file /var/log/caddy/saathi.log
+        format json
+    }
+}

@@ -1,0 +1,26 @@
+.env
+.env.local
+*.pyc
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+.venv/
+venv/
+dist/
+build/
+*.egg-info/
+.DS_Store
+node_modules/
+
+# Local secrets / private artifacts
+storage_state_*.json
+*.oga
+*.mp3
+*.wav
+scripts/data/*.json
+!scripts/data/.gitkeep
+
+# Editor
+.vscode/
+.idea/
+*.swp

@@ -1,0 +1,66 @@
+[project]
+name = "saathi"
+version = "0.1.0"
+description = "WhatsApp voice-note assistant for Hindi-speaking parents"
+readme = "README.md"
+requires-python = ">=3.12"
+license = { text = "Proprietary" }
+authors = [{ name = "Deep" }]
+
+dependencies = [
+    "fastapi==0.115.0",
+    "uvicorn[standard]==0.32.0",
+    "httpx==0.27.2",
+    "boto3==1.35.36",
+    "aioboto3==13.2.0",
+    "python-dotenv==1.0.1",
+    "pydantic==2.9.0",
+    "pydantic-settings>=2.5.2",
+    # Day 2 — speech
+    "sarvamai==0.1.28",
+    "pydub==0.25.1",
+    # Day 3 — LLM + browser
+    "anthropic[bedrock]>=0.40.0,<1.0.0",
+    "claude-agent-sdk>=0.1.0,<1.0.0",
+    "playwright==1.49.0",
+    "browserbase>=1.2.0,<2.0.0",
+    "mcp>=1.9.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest==8.3.0",
+    "pytest-asyncio==0.24.0",
+    "ruff==0.6.0",
+    "respx==0.21.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/saathi"]
+
+[tool.ruff]
+# Brief specified 100; bumped to 110 to accommodate Hindi prompt strings,
+# Playwright selectors, and tool-schema dict literals (per docs/DECISIONS.md).
+line-length = 110
+target-version = "py312"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W", "UP", "B", "ASYNC"]
+ignore = []
+
+[tool.ruff.format]
+quote-style = "double"
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+testpaths = ["tests"]
+addopts = "-q --strict-markers"
+markers = [
+    "integration: hits real external services (Bedrock, Sarvam, WhatsApp). Skipped in CI.",
+]
