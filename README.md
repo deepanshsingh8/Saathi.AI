@@ -1,5 +1,25 @@
 # Saathi
 
-Saathi (साथी, "companion") is a WhatsApp voice-note assistant for Hindi/Hinglish-speaking parents. v1 is a single-user build for one family — Mom in Jaipur. She sends a voice note; Saathi reorders her medicines (1mg/PharmEasy), her groceries (Blinkit/Swiggy Instamart), and pays utility bills (JVVNL electricity, Jio/Airtel recharge — concierge mode in v1). COD-only. Hindi/Hinglish only.
+> साथी — a WhatsApp voice-note assistant for Hindi-speaking parents.
 
-Strategy: `PLAN.md`. Build briefs: `docs/DAY_1.md` … `docs/DAY_7.md`. Operating rules and locked stack: `CLAUDE.md`. Live state: `docs/STATUS.md`.
+Mom sends a voice note. Saathi orders her medicines, groceries, or pays a utility bill on her behalf. COD-only. No apps to install, no menus to navigate. Just WhatsApp.
+
+## Status
+
+**Pre-Day-1.** See `docs/STATUS.md` for current state.
+
+## Documentation
+
+- **`CLAUDE.md`** — instructions for Claude Code (project rules, stack, conventions)
+- **`docs/PLAN.md`** — full strategy and architecture rationale
+- **`docs/DAY_1.md` … `docs/DAY_7.md`** — per-day build briefs
+- **`docs/STATUS.md`** — running state of the build
+- **`docs/DECISIONS.md`** — architecture decision log
+
+## Stack
+
+Python 3.12 · FastAPI · Claude Sonnet 4.6 (Bedrock ap-south-1) · Sarvam Saaras + Bulbul · Playwright + Browserbase · DynamoDB · S3 · AWS Lightsail Mumbai · WhatsApp Cloud API · Telegram (concierge alerts).
+
+## License
+
+Personal-use project. Not licensed for commercial use or redistribution.
